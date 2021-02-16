@@ -5,10 +5,13 @@
 %   Department of Computer Science
 %   Heriot-Watt University
 %
+%   Updated by: Alexandre Coates
+%   Date: February 2021  
+%   Institute of Photonics and Quantum Sciences
+%   Heriot-Watt University
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%\input{preamble}  %use this if you want an explicit preamble file
 \documentclass[a4paper,12pt]{report}
-
 
 %==============================title page info=================================
 
@@ -19,14 +22,14 @@
 % Degree  
 \newcommand{\degree}{Doctor of Philosophy} 
 % Date submitted
-\newcommand{\supdate}{March 2013}            
+\newcommand{\supdate}{February 2021}            
 
 %===================================packages===================================
 \usepackage[top=20mm, bottom=20mm, left=40mm, right=20mm]{geometry}
 \usepackage{setspace}
 \usepackage{fancyhdr}
-\usepackage[citecolor=black, urlcolor=black,
-  linkcolor=black, colorlinks=true, bookmarksopen=false, bookmarks=true]{hyperref}
+%\usepackage[citecolor=black, urlcolor=black,
+%  linkcolor=black, colorlinks=true, bookmarksopen=false, bookmarks=true]{hyperref}
 \usepackage[nonumberlist]{glossaries}
 \input{Glossaries}
 \usepackage{graphicx}
@@ -39,10 +42,26 @@
 \usepackage[notindex, nottoc, notlof, notlot ]{tocbibind} 
 %\usepackage{lscape}    % if you want to use land scape in one paper 
                        %...\begin{landscape}\end{landscape}
-
+\usepackage{amsmath} %mathematical environments and symbols
+\usepackage{siunitx} %mainly for producing the degrees symbol using \ang{}
+\usepackage{braket} %for BraKet notation
+\usepackage{nicefrac}
+%\usepackage{xr-hyper} %cross-referencing across files
+\usepackage{hyperref} %in-document links
+\usepackage{wrapfig} %figure placement
+\usepackage{subcaption} %subcaptions for subfigures
+\usepackage{cleveref} %more referencing behaviour, possibly unneeded
+\usepackage[utf8]{inputenc} %related to encoding
+\usepackage{etoolbox} %removes extra 'references title when calling bib group
+%\patchcmd{\thebibliography}{\section*{\refname}}{}{}{}%same as above
+\usepackage{float} %fix figure positions with [H] (stronger than  [h!])
+\usepackage{parskip} % OPTIONAL - removes paragraph indentation
+\usepackage{color}
+\graphicspath{{fig/}{../fig/}} %sets path for images/figures to the fig folder
 \setcounter{tocdepth}{3} 
 \setcounter{secnumdepth}{3}
-
+\date{\today}
+\usepackage{subfiles}
 %===================================Document===================================
 \begin{document}
 \doublespacing
@@ -70,7 +89,7 @@
 \clearpage
 \input{Abstract}
 
-%==================================frontmater==================================
+%==================================frontmatter==================================
 \clearpage
 \pagestyle{plain}
 \clearpage\pagenumbering{roman}
@@ -94,10 +113,10 @@
 %===================================Chapters===================================
 
 
-\input{Introduction}
-\input{Background}
-\input{Design}
-\input{Conclusion}
+\subfile{Introduction}
+\subfile{Background}
+\subfile{Design}
+\subfile{Conclusion}
 
 
 %===================================Appendix===================================
