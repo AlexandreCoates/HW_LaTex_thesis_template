@@ -10,7 +10,6 @@
 %   Institute of Photonics and Quantum Sciences
 %   Heriot-Watt University
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\input{preamble}  %use this if you want an explicit preamble file
 \documentclass[a4paper,12pt]{report}
 
 %==============================title page info=================================
@@ -30,16 +29,18 @@
 \usepackage{fancyhdr}
 %\usepackage[citecolor=black, urlcolor=black,
 %  linkcolor=black, colorlinks=true, bookmarksopen=false, bookmarks=true]{hyperref}
-\usepackage[nonumberlist]{glossaries}
-\input{Glossaries}
+%\usepackage[nonumberlist]{glossaries}
+%\makeglossaries
+%\input{Glossaries}
+\usepackage{acro}
 \usepackage{graphicx}
-\usepackage{subfigure}
+%\usepackage{subfigure}
 \usepackage{xspace}
 \usepackage{listings}
 \usepackage{pdfpages}
 \usepackage{alltt}
 \usepackage{float} % to use [H] 
-\usepackage[notindex, nottoc, notlof, notlot ]{tocbibind} 
+\usepackage[notindex, nottoc, notlof, notlot]{tocbibind} 
 %\usepackage{lscape}    % if you want to use land scape in one paper 
                        %...\begin{landscape}\end{landscape}
 \usepackage{amsmath} %mathematical environments and symbols
@@ -49,18 +50,25 @@
 %\usepackage{xr-hyper} %cross-referencing across files
 \usepackage{hyperref} %in-document links
 \usepackage{wrapfig} %figure placement
-\usepackage{subcaption} %subcaptions for subfigures
+%\usepackage{subcaption} %subcaptions for subfigures
 \usepackage{cleveref} %more referencing behaviour, possibly unneeded
 \usepackage[utf8]{inputenc} %related to encoding
-\usepackage{etoolbox} %removes extra 'references title when calling bib group
+%\usepackage{etoolbox} %removes extra 'references title when calling bib group
 %\patchcmd{\thebibliography}{\section*{\refname}}{}{}{}%same as above
-\usepackage{float} %fix figure positions with [H] (stronger than  [h!])
 \usepackage{parskip} % OPTIONAL - removes paragraph indentation
 \usepackage{color}
 \graphicspath{{fig/}{../fig/}} %sets path for images/figures to the fig folder
 \setcounter{tocdepth}{3} 
 \setcounter{secnumdepth}{3}
 \date{\today}
+%===========================define acronyms used throughout===============
+%\DeclareAcronym{cd}{short = CD ,long  = compact disc}
+%\DeclareAcronym{ghc}{short = GHC ,long  = Glasgow Haskell Compiler}
+%\DeclareAcronym{pe}{short = PE ,long  = Processing Element}
+\input Acronyms %or you can list your acronyms in a separate file
+
+
+
 \usepackage{subfiles}
 %===================================Document===================================
 \begin{document}
@@ -75,7 +83,7 @@
 \vfill
 {\Large\textit{by}}\\\vspace{0.2cm}
 {\Large\upshape{\auth}}\\\vspace{1.0cm}
-\includegraphics[width=3.5cm]{Figures/LogoBlack.jpg}\\
+\includegraphics[width=3.5cm]{fig/LogoBlack.jpg}\\
 \vspace{1cm}
 {\large Submitted for the degree of \\ \degree}\\
 \vspace{1cm}
@@ -97,9 +105,10 @@
 \tableofcontents
 \listoftables
 \listoffigures
+\printacronyms %prints used acronyms wherever you put this
 % In order for the glossaries to appear you should run this command
-% makeglossaries HWThesis
-\printglossaries
+%makeglossaries HWThesis
+%\printglossaries
 %===================================headings===================================
 \clearpage
 \pagestyle{fancy}
@@ -113,17 +122,17 @@
 %===================================Chapters===================================
 
 
-\subfile{Introduction}
-\subfile{Background}
-\subfile{Design}
-\subfile{Conclusion}
+\subfile{Chapters/Introduction}
+\subfile{Chapters/Background}
+\subfile{Chapters/Design}
+\subfile{Chapters/Conclusion}
 
 
 %===================================Appendix===================================
 \appendix
 \renewcommand{\chaptermark}[1]{\markboth{Appendix \thechapter.\ #1}{}}
-\input{Appendix1}
-
+\subfile{Chapters/Appendix1}
+\
 %=================================Bibliography=================================
 \bibliographystyle{abbrv}
 \bibliography{Bibliography}
