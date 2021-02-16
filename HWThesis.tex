@@ -57,15 +57,16 @@
 %\patchcmd{\thebibliography}{\section*{\refname}}{}{}{}%same as above
 \usepackage{parskip} % OPTIONAL - removes paragraph indentation
 \usepackage{color}
-\graphicspath{{fig/}{../fig/}} %sets path for images/figures to the fig folder
+\graphicspath{{Figures/}{../Figures/}} %sets path for figures for two levels of nesting the fig folder
+
 \setcounter{tocdepth}{3} 
 \setcounter{secnumdepth}{3}
 \date{\today}
-%===========================define acronyms used throughout===============
-%\DeclareAcronym{cd}{short = CD ,long  = compact disc}
-%\DeclareAcronym{ghc}{short = GHC ,long  = Glasgow Haskell Compiler}
-%\DeclareAcronym{pe}{short = PE ,long  = Processing Element}
-\input Acronyms %or you can list your acronyms in a separate file
+%=========================== define acronyms ===============
+\DeclareAcronym{cd}{short = CD ,long  = compact disc}
+\DeclareAcronym{ghc}{short = GHC ,long  = Glasgow Haskell Compiler}
+\DeclareAcronym{pe}{short = PE ,long  = Processing Element}
+%\input {Acronyms} %or you can list your acronyms in a separate file, but it is more work to sort out with subfiles
 
 
 
@@ -83,7 +84,7 @@
 \vfill
 {\Large\textit{by}}\\\vspace{0.2cm}
 {\Large\upshape{\auth}}\\\vspace{1.0cm}
-\includegraphics[width=3.5cm]{fig/LogoBlack.jpg}\\
+\includegraphics[width=5cm]{HW_shield}\\
 \vspace{1cm}
 {\large Submitted for the degree of \\ \degree}\\
 \vspace{1cm}
@@ -106,9 +107,6 @@
 \listoftables
 \listoffigures
 \printacronyms %prints used acronyms wherever you put this
-% In order for the glossaries to appear you should run this command
-%makeglossaries HWThesis
-%\printglossaries
 %===================================headings===================================
 \clearpage
 \pagestyle{fancy}
