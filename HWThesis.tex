@@ -27,14 +27,10 @@
 \usepackage[top=20mm, bottom=20mm, left=40mm, right=20mm]{geometry}
 \usepackage{setspace}
 \usepackage{fancyhdr}
-%\usepackage[citecolor=black, urlcolor=black,
-%  linkcolor=black, colorlinks=true, bookmarksopen=false, bookmarks=true]{hyperref}
-%\usepackage[nonumberlist]{glossaries}
-%\makeglossaries
-%\input{Glossaries}
 \usepackage{acro}
 \usepackage{graphicx}
 %\usepackage{subfigure}
+%\usepackage{subcaption} %subcaptions for subfigures
 \usepackage{xspace}
 \usepackage{listings}
 \usepackage{pdfpages}
@@ -47,14 +43,10 @@
 \usepackage{siunitx} %mainly for producing the degrees symbol using \ang{}
 \usepackage{braket} %for BraKet notation
 \usepackage{nicefrac}
-%\usepackage{xr-hyper} %cross-referencing across files
 \usepackage{hyperref} %in-document links
-\usepackage{wrapfig} %figure placement
-%\usepackage{subcaption} %subcaptions for subfigures
+\usepackage{wrapfig} %figure placemen
 \usepackage{cleveref} %more referencing behaviour, possibly unneeded
 \usepackage[utf8]{inputenc} %related to encoding
-%\usepackage{etoolbox} %removes extra 'references title when calling bib group
-%\patchcmd{\thebibliography}{\section*{\refname}}{}{}{}%same as above
 \usepackage{parskip} % OPTIONAL - removes paragraph indentation
 \usepackage{color}
 \graphicspath{{Figures/}{../Figures/}} %sets path for figures for two levels of nesting the fig folder
@@ -63,9 +55,10 @@
 \setcounter{secnumdepth}{3}
 \date{\today}
 %=========================== define acronyms ===============
-\DeclareAcronym{cd}{short = CD ,long  = compact disc}
-\DeclareAcronym{ghc}{short = GHC ,long  = Glasgow Haskell Compiler}
-\DeclareAcronym{pe}{short = PE ,long  = Processing Element}
+\DeclareAcronym{lol}{short = lol, long = laughing out loud}
+\DeclareAcronym{www}{short = WWW ,long  = World-Wide Web}
+\DeclareAcronym{woodchuck}{short = HMWWAWCIAWCCW ,long  =How much wood would a woodchuck chuck if a woodchuck could chuck wood?}
+
 %\input {Acronyms} %or you can list your acronyms in a separate file, but it is more work to sort out with subfiles
 
 
@@ -88,8 +81,8 @@
 \vspace{1cm}
 {\large Submitted for the degree of \\ \degree}\\
 \vspace{1cm}
-{\large\textsc{Department of Computer Science}\\
-\textsc{School of Mathematical and Computer Sciences}\\
+{\large\textsc{Institute of Photonics and Quantum Sciences}\\
+\textsc{School of Engineering and Physical Sciences}\\
 \textsc{Heriot-Watt University}}\vfill
 {\large{\supdate}}
 \end{center}
@@ -104,8 +97,8 @@
 \clearpage\pagenumbering{roman}
 \input{Acknowledgements}
 \tableofcontents
-\listoftables
-\listoffigures
+\listoftables %optional
+\listoffigures %optional
 \printacronyms %prints used acronyms wherever you put this
 %===================================headings===================================
 \clearpage
