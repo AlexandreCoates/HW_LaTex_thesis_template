@@ -1,10 +1,12 @@
-\documentclass[../HWThesis.tex]{subfiles}
+\documentclass[../HWThesis.tex]{subfiles} %Copy this at the top of each subfile, then you can render the .tex file on its own
 \begin{document}
 
 \chapter{Introduction}
 \label{ch:introduction}
 
-For the Degree of Doctor of Philosophy the thesis shall not normally exceed 80,000 words and shall not normally exceed 400 pages in length including Appendices, with a limit of no more than 100,000 words. In exceptional circumstances, the Research Degrees Committee will consider requests for thesis exceeding 100,000 on a case by case basis. The number of pages of a thesis exceeding 80,000 words in length shall be increased on a pro rata basis in accordance with the word limit.  For the Degree of Doctor of Philosophy by Published Research, a critical review of the published research which shall be inthe range of 10,000 to 25,000 words must be submitted.
+\section{Thesis Structure Details}
+\label{sec: thesis details}
+For the Degree of Doctor of Philosophy the thesis shall not normally exceed 80,000 words and shall not normally exceed 400 pages in length including Appendices, with a limit of no more than 100,000 words. In exceptional circumstances, the Research Degrees Committee will consider requests for thesis exceeding 100,000 on a case by case basis. The number of pages of a thesis exceeding 80,000 words in length shall be increased on a pro rata basis in accordance with the word limit.  For the Degree of Doctor of Philosophy by Published Research, a critical review of the published research which shall be in the range of 10,000 to 25,000 words must be submitted.
 
 Chapter 1 of the thesis must be an Introduction, so headed, defining the relation of the thesis to other work in the same field and referring appropriately to any findings, propositions or new discoveries contained in the thesis and to any important points about sources or treatment.
 
@@ -12,11 +14,105 @@ Thesis guidelines can be found at: \\ \url{https://www.hw.ac.uk/uk/students/doc/
 
 Related documents and forms at: \url{https://www.hw.ac.uk/uk/students/studies/examinations/thesis.htm}
 
-\section{Section}
+\subsection{Layout details}
+\label{sec: layout}
+In the main tex document \texttt{HWThesis.tex} the margins are set, and the left margin is larger than the right one. This is because the PhD thesis you submit will be printed one-side rather than double sided. So in any two spread the printed page will be the one on the right hand side. Therefore, the left side of every page will connect to the thesis binding, so you need an extra large margin to make sure none of your images or text are hidden by the binding.
 
-\cite{ghc-pps}
+\subsubsection{Paragraph indentation} - I have turned off the LaTeX default of having the first line of each paragraph be indented. If you want to turn that back on, simply go to the preamble in \texttt{HWThesis.tex} and comment out the line \texttt{usepackage\{parskip\}}.
 
-\subsection{Subsection}
+\section{Template Structure}
+This LaTeX template is for you to have the format generally laid out, and an example structure. The main file is \texttt{HWThesis.tex}, that defines the title page, layout, packages, and a few other pieces of information. The file tree is set up for a long project, with a few folders. A \texttt{Figures} folder for all your figures, then a \texttt{Chapters} folder to keep the tex files for each chapter. This is just so you don't accidentally make one massive tex file where it gets really really difficult to correct LaTeX mistakes for example. You can change this structure if you'd like,  for example with a different figures folder for every chapter. 
 
-\subsubsection{Subsubsection}
+I have also tried to make this structure modular. For large Theses, if they have lots of images, it can take a long time for them to render, but you are likely only wanting to update one chapter or appendix at a time. So I have introduced the \texttt{subfiles} package. 
+
+\subsection{\texttt{subfiles}}
+The subfiles package allows you to render individual subdocuments within a larger document, keeping all the functionality from the main document intact. You can see how I have done this in \texttt{HWThesis.tex} where the introduction is added with the \texttt{subfile} command, rather than \texttt{input} or \texttt{include} command. Then each chapter just begins with one line of text\texttt{ \\documentclass[../HWThesis.tex]\{subfiles\}}, and has \texttt{begin\{document\}, end\{document\}} around the rest of the chapter. 
+
+\subsubsection{What is the advantage?}
+With this, you can work on each chapter in isolation, and not worry about massively long typesetting times, or breaking the rest of your LaTeX document. The main thing that might not work is the citation numbering. this is done at the end of a document, so won't show the numbers correctly unless you are printing out the bibliography for each chapter at the end of each chapter, or render \texttt{HWThesis.tex}. 
+
+\section{What other features are in this template?}
+
+\subsection{References and \texttt{hyperref}}
+With a bibliography set up properly, using Zotero, Mendeley, any standard reference manager or BibItems, we can simply cite papers \cite{ghc-pps}. 
+
+We can also reference prior sections, for example you might want to see \ref{sec: thesis details} for specifics on how to set up a thesis. These links should be clickable in the pdf thanks to the \texttt{hyperref} package. These links \textbf{will not} show up when printing, they are digital only. If you want to make them printable, you can do that with the help of the documentation. 
+
+\subsection{Colors}
+You may want to even change the color of text when working on it, you can do that like this \textcolor{red}{there are some colors that are already named in \texttt{graphicx}} but you can also define your own.  \definecolor{light-blue}{rgb}{0.8,0.85,1} \textcolor{light-blue}{So now I have a specific light blue color, very nice.} You may want to have colours to highlight sections you are working on, but text needs to be black when you submit!
+
+
+\subsection{Acronyms, via \texttt{acro}}
+
+This thesis comes set up with acronyms so you can define terms you use repeatedly and make sure they're formatted correctly every time. A simple acronym is  \ac{wys}, as this is the first time it is used in the thesis, we get the long version, with the short version following it in brackets. Now it has been used once, we can now simply write the acronym command \texttt{ac\{wys\}} again and we will just get the shortened version. Unlike \LaTeX, Microsoft Word is a \ac{wys} typesetting program. 
+
+These acronyms have to be defined in the preamble of \texttt{HWThesis.tex} . You will want to use these when you just don't want to have to type out a term over and over again, or you can invoke long and hard to spell terms like bacterial names, specific pieces of hardware used in experiments, or even lengthy phrases. This document is set up to include a page that lists used terms. \acl{opt}. 
+
+Of course you can choose whether you want the long or short version of an acronym at any point, here is a quick summary of options: 
+
+\begin{tabular}{lll}
+first &  \texttt{ac\{lol\}} & \ac{lol} \\
+second & \texttt{ac\{lol\}}& \ac{lol} \\
+long & \texttt{acl\{lol\}}  & \acl{lol} \\
+short & \texttt{acs\{lol\}} & \acs{lol} \\
+full & \texttt{acf\{lol\}}  & \acf{lol}
+\end{tabular}
+
+This is a very versatile package that saves time and lets you say the important things, whether that is  \ac{jau} or \ac{woodchuck}
+
+\section{Symbols}
+Top tip, if you are struggling to remember the name of a \LaTeX symbol you need, maybe play around with detexify, where you can draw a symbol, and it will try and find a matching one in \LaTeX: \url{https://detexify.kirelabs.org/classify.html} 
+\subsection{Maths}
+As a physicist I have included a few packages for maths, these should be standard enough 
+\begin{equation}
+e =  \sum\limits_{n = 0}^{\infty} \frac{1}{n!} = 1 + \frac{1}{1} + \frac{1}{1\cdot 2} + \frac{1}{1\cdot 2\cdot 3} + \cdots
+\end{equation}
+
+An important note here - Thesis guidelines say every equation that appears on its own line, needs an associated number, even if you don't refer to it. So $2 = \sum_i^\infty 2^{-i}$ would not need a number, but the above equation does. I also added in a different fraction option with $\nicefrac{1}{2}$ as compared to the standard $\frac{1}{2}$. Up to your personal preference. 
+
+\subsection{SI Units via \texttt{siunitx}}
+The SI unit package is also include, one of the more common usages is to have a proper command for the degree symbol, for example 10 degrees becomes \(\ang{10}\). However the package also includes a lot of functions for using units like grams, candela, moles, electronvolts etc with numbers, so that the unit lavels look the same whether in text mode or math mode. If you write a lot of units, maybe look into the documentation. 
+
+\textbf{That is everything, the following chapters show some example plots, tables, and then an appendix with details on how an appendix should be set up.}
+
+\subsection{Subfigures and Subcaptions}
+I have both of these in the header for the main \texttt{HWThesis.tex} but I have not bothered to test them, play around at your own risk, I don't really like either package honestly. 
+
+\section{Logos}
+Last last thing, I have included a new university crest for the title page, but you may want an alternative. Here I will quickly show you the ones I have included. You can then choose exactly which one you would like on your title page! 
+
+\begin{figure}[H]
+\begin{center}
+
+\includegraphics[width=.5\linewidth]{HW_shield.pdf}	
+\caption{The default HW\_shield, that I cropped from the full logo svg}%make sure to put a \ before any underscores in captions, otherwise it can get nasty
+\label{fig:shield}
+\end{center}
+\end{figure} 
+
+\begin{figure}[H]
+ \begin{center}
+ \includegraphics [width=0.5\linewidth]{HW_shield_black.pdf}
+ \caption{The black HW\_shield.pdf, that I also cropped from the full logo svg}
+ \label{fig: black shield}
+\end{center}
+\end{figure} 
+
+\begin{figure}[H]
+ \begin{center}
+ \includegraphics [width=0.5\linewidth]{HW_logo}
+ \caption{The JPEG HW\_logo from the intranet}
+ \label{fig: hw logo}
+\end{center}
+\end{figure} 
+
+\begin{figure}[H]
+ \begin{center}
+ \includegraphics [width=0.5\linewidth]{HW_logo_black}
+\caption{Lastly... the black JPEG HW\_logo from the intranet.}
+ \label{fig: hw logo black}
+\end{center}
+\end{figure} 
+
+
 \end{document}

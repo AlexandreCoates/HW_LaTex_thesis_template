@@ -29,7 +29,7 @@
 \usepackage{fancyhdr}
 \usepackage{acro}
 \usepackage{graphicx}
-%\usepackage{subfigure}
+%\usepackage{subfigure}%
 %\usepackage{subcaption} %subcaptions for subfigures
 \usepackage{xspace}
 \usepackage{listings}
@@ -42,28 +42,31 @@
 \usepackage{amsmath} %mathematical environments and symbols
 \usepackage{siunitx} %mainly for producing the degrees symbol using \ang{}
 \usepackage{braket} %for BraKet notation
-\usepackage{nicefrac}
+\usepackage{nicefrac} %a nice fraction
 \usepackage{hyperref} %in-document links
-\usepackage{wrapfig} %figure placemen
+\usepackage{wrapfig} %figure placement
 \usepackage{cleveref} %more referencing behaviour, possibly unneeded
-\usepackage[utf8]{inputenc} %related to encoding
+%\usepackage[utf8]{inputenc} %related to encoding %not needed as of 2018/9 I think
 \usepackage{parskip} % OPTIONAL - removes paragraph indentation
-\usepackage{color}
 \graphicspath{{Figures/}{../Figures/}} %sets path for figures for two levels of nesting the fig folder
 
 \setcounter{tocdepth}{3} 
 \setcounter{secnumdepth}{3}
 \date{\today}
 %=========================== define acronyms ===============
+%list the command to type, the short version, and the long version at a minimum
+%for more advanced features like grouping, tagging or setting capitalisation, see the acro documentation on CTAN
 \DeclareAcronym{lol}{short = lol, long = laughing out loud}
-\DeclareAcronym{www}{short = WWW ,long  = World-Wide Web}
-\DeclareAcronym{woodchuck}{short = HMWWAWCIAWCCW ,long  =How much wood would a woodchuck chuck if a woodchuck could chuck wood?}
-
+\DeclareAcronym{www}{short = WWW , long  = World-Wide Web}
+\DeclareAcronym{wys}{short=WYSIWYG, long = What you see is what you get}
+\DeclareAcronym{woodchuck}{short = HMWWAWCIAWCCW, long= How much wood would a woodchuck chuck if a woodchuck could chuck wood?}
+\DeclareAcronym{opt}{short = Optional, long = Including a list of used terms/acronyms is totally optional}
+\DeclareAcronym{jau}{short = JAU, long = Join a Union}
 %\input {Acronyms} %or you can list your acronyms in a separate file, but it is more work to sort out with subfiles
 
 
 
-\usepackage{subfiles}
+\usepackage{subfiles} %this need to be the LAST package you include
 %===================================Document===================================
 \begin{document}
 \doublespacing
@@ -87,11 +90,11 @@
 {\large{\supdate}}
 \end{center}
 {\small The copyright in this thesis is owned by the author. Any quotation from the report or use of any of the information contained in it must acknowledge this report as the source of the quotation or information.}
-%===================================Abstract===================================
+%===================================Abstract=================================
 \clearpage
 \input{Abstract}
 
-%==================================frontmatter==================================
+%==================================frontmatter================================
 \clearpage
 \pagestyle{plain}
 \clearpage\pagenumbering{roman}
@@ -99,8 +102,8 @@
 \tableofcontents
 \listoftables %optional
 \listoffigures %optional
-\printacronyms %prints used acronyms wherever you put this
-%===================================headings===================================
+\printacronyms %OPTIONAL prints used acronyms wherever you put this
+%===================================headings=================================
 \clearpage
 \pagestyle{fancy}
 \pagenumbering{arabic}
@@ -110,21 +113,19 @@
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.0pt}
 \renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter:\ #1}{}}
-%===================================Chapters===================================
-
+%===================================Chapters================================
 
 \subfile{Chapters/Introduction}
 \subfile{Chapters/Background}
 \subfile{Chapters/Design}
 \subfile{Chapters/Conclusion}
 
-
-%===================================Appendix===================================
+%===================================Appendix================================
 \appendix
 \renewcommand{\chaptermark}[1]{\markboth{Appendix \thechapter.\ #1}{}}
 \subfile{Chapters/Appendix1}
-\
-%=================================Bibliography=================================
+
+%=================================Bibliography================================
 \bibliographystyle{abbrv}
 \bibliography{Bibliography}
 
